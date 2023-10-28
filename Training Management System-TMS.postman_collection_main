@@ -1,0 +1,2153 @@
+{
+	"info": {
+		"_postman_id": "034c42b5-d41e-4231-8926-664fac7c7298",
+		"name": "Training Management System-TMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30271198"
+	},
+	"item": [
+		{
+			"name": "Auth Login Controller",
+			"item": [
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var token = jsonData['access_token'];\r",
+									"pm.environment.set(\"token\", jsonData.token)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\" : \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v2/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v2",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login-Trainer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var Trainer_token = jsonData['access_token'];\r",
+									"pm.environment.set(\"Trainer_token\", jsonData.token)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"shakil1234@gmail.com\",\r\n    \"password\" : \"shakil1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v2/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v2",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login-Trainee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var Trainee_token = jsonData['access_token'];\r",
+									"pm.environment.set(\"Trainee_token\", jsonData.token)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"rezone1234@gmail.com\",\r\n    \"password\" : \"rezone1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v2/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v2",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Registration Controller",
+			"item": [
+				{
+					"name": "Registration-Trainer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var profilePicture = jsonData['profilePicture'];\r",
+									"pm.environment.set(\"profilePicture\", jsonData.profilePicture)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "shakil124@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Shakil",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "iqbal",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "shakil124",
+									"type": "text"
+								},
+								{
+									"key": "phoneNo",
+									"value": "sfdsjfsdfjerwe",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Image_profile/trainer_shakil.jpg"
+								},
+								{
+									"key": "role",
+									"value": "Trainer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/registerUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"registerUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration-Trainee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var profilePicture = jsonData['profilePicture'];\r",
+									"pm.environment.set(\"profilePicture\", jsonData.profilePicture)\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiQURNSU4ifV0sInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzAwNTUxMywiZXhwIjoxNjk3MDkxOTEzfQ.qISM2Ojvat89NgZ1OL-US-P5i83AC371KeKqX2j6j38",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "rezone1234@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Rezone",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "ullah",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "rezone1234",
+									"type": "text"
+								},
+								{
+									"key": "phoneNo",
+									"value": "01898764321",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Image_profile/trainee_rezone.jpg"
+								},
+								{
+									"key": "role",
+									"value": "Trainee",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/registerUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"registerUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User-Update his/her profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "28",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "Masfee123@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "fullName",
+									"value": "Masfee khan",
+									"type": "text"
+								},
+								{
+									"key": "bloodGroup",
+									"value": "A+",
+									"type": "text"
+								},
+								{
+									"key": "cgpa",
+									"value": "3.75",
+									"type": "text"
+								},
+								{
+									"key": "passingYear",
+									"value": "2022",
+									"type": "text"
+								},
+								{
+									"key": "institute",
+									"value": "Aust",
+									"type": "text"
+								},
+								{
+									"key": "designation",
+									"value": "Job ",
+									"type": "text"
+								},
+								{
+									"key": "experience",
+									"value": "1 year",
+									"type": "text"
+								},
+								{
+									"key": "expertise",
+									"value": "SQA_Manual",
+									"type": "text"
+								},
+								{
+									"key": "phoneNo",
+									"value": "01712438954",
+									"type": "text"
+								},
+								{
+									"key": "profilePictures",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Image_profile/update_user.jpg"
+								},
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Image_profile/update_imagefile.jpg"
+								},
+								{
+									"key": "nid",
+									"value": "234242",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/update-profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Image file name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/images/{{profilePicture}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"images",
+								"{{profilePicture}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainee_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-user-role",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-user-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Trainee Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainee_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-user-profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-user-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainee_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-current-user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-current-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-all-users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-all-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/get-all-trainers/trainer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"get-all-trainers",
+								"trainer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batch Controller",
+			"item": [
+				{
+					"name": "Batch-Create batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiQURNSU4ifV0sInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzAwNjU0MCwiZXhwIjoxNjk3MDkyOTQwfQ.nS4CGuwacdRMC9-xXJc4cDNv0NxHnUkL7mMG7AseAZY",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"batchName\": \"IOS\",\r\n  \"startTime\": \"2023-06-12T09:20:09.807Z\",\r\n  \"endTime\": \"2023-11-12T09:20:09.807Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/batch/create-batch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"batch",
+								"create-batch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batch-Assign trainees to batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var batchName = jsonData['batchName'];\r",
+									"pm.environment.set(\"batchName\", jsonData.batchName)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"traineeEmail\": \"rezone1234@gmail.com\",\r\n    \"batchName\": \"ALPHA\"\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/batch/assign-trainees-to-batch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"batch",
+								"assign-trainees-to-batch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batch Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/batch/trainees/{{batchname}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"batch",
+								"trainees",
+								"{{batchname}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/batch/get-batches",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"batch",
+								"get-batches"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Course Controller",
+			"item": [
+				{
+					"name": "Course-Course creation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n  \"courseName\": \"course123\",\r\n  \"courseDescription\": \"Test the api of TMS1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/course/create-course",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"course",
+								"create-course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the courses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/course/get-courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"course",
+								"get-courses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedule Controller",
+			"item": [
+				{
+					"name": "Schedule-Create schedules for a batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var batchName = jsonData['batchName'];\r",
+									"pm.environment.set(\"batchName\", jsonData.batchName)\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var courseTitle = jsonData['courseTitle'];\r",
+									"pm.environment.set(\"courseTitle\", jsonData.courseTitle)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"scheduleName\" : \"\", \r\n    \"startTime\": \"2023-05-12\",\r\n    \"endTime\": \"2023-08-12\",\r\n    \"courseTitle\" : \"Api_Testing\", \r\n    \"batchName\" : [\"ALPHA90\"], \r\n    \"trainerEmail\" : \"shakil1234@gmail.com\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/schedules/create-schedule",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedules",
+								"create-schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule-Get Batch Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/schedules/get-schedules-by-batch/{{batchName}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedules",
+								"get-schedules-by-batch",
+								"{{batchName}}"
+							],
+							"query": [
+								{
+									"key": "batchname",
+									"value": "ysd-java-b02/ysd-devops-b02",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Schedule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Update the title \",\r\n  \"trainerEmail\": \"nahid@gmail.com\",\r\n  \"courseTitle\": \"Automation90\",\r\n  \"batchName\": [\r\n    \"ALPHA90\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/schedules/update-schedule/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedules",
+								"update-schedule",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Schedule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/schedules/get-schedules",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedules",
+								"get-schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedules-By-Trainer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/schedules/get-schedules-by-trainer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedules",
+								"get-schedules-by-trainer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Course name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainee_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/schedules/get-schedule-courses/{{courseTitle}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedules",
+								"get-schedule-courses",
+								"{{courseTitle}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Schedule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/schedules/delete-schedule/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"schedules",
+								"delete-schedule",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Classroom Controller",
+			"item": [
+				{
+					"name": "Classroom-Create post in the classroom",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var classroomId = jsonData['classroomId'];\r",
+									"pm.environment.set(\"classroomId\", jsonData.classroomId)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "classroomId",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "Create post",
+									"type": "text"
+								},
+								{
+									"key": "trainerEmail",
+									"value": "shakil123@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "fileName",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Assignment_file/API_TMS_Assignment.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/classroom/create-attachments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classroom",
+								"create-attachments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classroom-Reply to the post in the classroom",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"attachmentId\" : \"2\", \r\n    \"reply\" : \"Classroom reply from trainee\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/classroom/create-reply",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classroom",
+								"create-reply"
+							],
+							"query": [
+								{
+									"key": "batchname",
+									"value": "ysd-java-b02/ysd-devops-b02",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classroom-Create notices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"classroomId\": 2, \r\n    \"notice\" : \"This is another notice\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/classroom/create-notice",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classroom",
+								"create-notice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Classroom-notices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/classroom/get-classroom-notices/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classroom",
+								"get-classroom-notices",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Classroom-details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/classroom/get-classroom-details/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classroom",
+								"get-classroom-details",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Assigned-Classroom",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/classroom/get-assigned-classroom",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"classroom",
+								"get-assigned-classroom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assignment Controller",
+			"item": [
+				{
+					"name": "Assignment-Create Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "assignmentTitle",
+									"value": "API_Testing_TMS",
+									"type": "text"
+								},
+								{
+									"key": "assignmentFile",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Assignment_file/API_TMS_Assignment.doc"
+								},
+								{
+									"key": "endTime",
+									"value": "2023-08-20T12:00:00",
+									"type": "text"
+								},
+								{
+									"key": "scheduleId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/assignment/create-assignment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"assignment",
+								"create-assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment-Get assignments by user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/assignment/get-assignments-by-user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"assignment",
+								"get-assignments-by-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment-Submit answer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var answerFile = jsonData['answerFile'];\r",
+									"pm.environment.set(\"answerFile\", jsonData.answerFile)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Trainee_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "assignmentId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "answerFile",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Assignment_file/Submit_answer.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/assignment/submit-answer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"assignment",
+								"submit-answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "assignmentTitle",
+									"value": "Non functional",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/BJIT/Pictures/TMS/Assignment_file/Updated_assignment.doc"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/assignment/update-assignment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"assignment",
+								"update-assignment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/assignment/get-assignments/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"assignment",
+								"get-assignments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show file name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/assignment/files/{{answerFile}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"assignment",
+								"files",
+								"{{answerFile}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
